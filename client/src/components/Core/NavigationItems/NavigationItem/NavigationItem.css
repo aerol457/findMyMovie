@@ -1,0 +1,14 @@
+.navigation-item {
+  padding: 5px 8px;
+}
+
+.navigation-item:hover,
+.navigation-item:active {
+  background-color: #e50914;
+  border-radius: 7px;
+}
+
+.navigation-item a {
+  color: white;
+  text-decoration: none;
+}

@@ -1,0 +1,53 @@
+.square-green {
+  border-radius: 8px;
+  font-weight: bold;
+  color: #1e1f26;
+  background-color: #2fb45a;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.square-green:hover,
+.square-green:active {
+  opacity: 0.8;
+}
+
+.square-gray {
+  background-color: #5a6074;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #1e1f26;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.square-gray:hover,
+.square-gray:active {
+  opacity: 0.8;
+}
+
+.outline-red {
+  color: white;
+  background: none;
+  border: 2px solid red;
+  border-radius: 37px;
+  padding: 10px 30px;
+  cursor: pointer;
+}
+.outline-red:hover,
+.outline-red:active {
+  background: red;
+}
+
+.outline-white {
+  background: none;
+  color: white;
+  border: 2px solid gray;
+  border-radius: 37px;
+  padding: 10px 30px;
+  cursor: pointer;
+}
+.outline-white:hover,
+.outline-white:active {
+  border: 2px solid white;
+}
