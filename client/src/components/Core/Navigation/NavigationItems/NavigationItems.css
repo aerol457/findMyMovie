@@ -1,0 +1,11 @@
+.navigation-items {
+  display: flex;
+  flex-flow: row;
+  list-style: none;
+}
+
+@media (max-width: 700px) {
+  .navigation-items {
+    flex-flow: column;
+  }
+}

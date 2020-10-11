@@ -1,0 +1,23 @@
+.navigation-item a {
+  padding: 1px 4px;
+  font-size: 15px;
+}
+
+.navigation-item a:hover,
+.navigation-item a:active,
+.navigation-item a.active {
+  background-color: #e50914;
+  border-radius: 7px;
+}
+
+.navigation-item a {
+  color: white;
+  text-decoration: none;
+}
+
+@media (max-width: 800px) {
+  .navigation-item a {
+    padding: 1px 4px;
+    font-size: 10px;
+  }
+}

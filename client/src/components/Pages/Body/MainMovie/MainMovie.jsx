@@ -10,7 +10,7 @@ class MainMovie extends Component {
       <div className="main-movie">
         <img
           src="http://www.returndates.com/backgrounds/narcos.logo.png"
-          alt="main-movie-image"
+          alt="movie pic"
         />
         <h2>Seasion 2 now available</h2>
         <h4>

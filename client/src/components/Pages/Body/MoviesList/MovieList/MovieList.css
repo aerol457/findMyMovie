@@ -1,0 +1,60 @@
+.movie-list {
+  height: 200px;
+  width: calc(20% - 20px);
+  margin-right: 20px;
+  background-image: url("http://image.tmdb.org/t/p/original/bI37vIHSH7o4IVkq37P8cfxQGMx.jpg");
+  background-color: black;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: background 0.8s ease;
+}
+
+.movie-list:hover,
+.movie-list:active {
+  cursor: pointer;
+  background-size: 125%;
+  opacity: 0.8;
+}
+
+.movie-list:last-child {
+  margin-right: 0;
+}
+
+.movie-list-content {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  position: relative;
+  height: 100%;
+  padding: 20px;
+  color: white;
+  text-align: left;
+  opacity: 0;
+}
+
+.movie-list-content:hover,
+.movie-list-content:active {
+  opacity: 1;
+}
+
+.movie-list-content-title {
+  transition: opacity 0.125s ease;
+  font-size: 23px;
+  font-weight: 200;
+}
+
+.movie-list-content-rate {
+  font-size: 20px;
+}
+
+.movie-list-content-description {
+  font-size: 15px;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
