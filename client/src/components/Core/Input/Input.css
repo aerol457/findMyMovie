@@ -1,0 +1,33 @@
+.input-search {
+  background-color: transparent;
+  border: 2px solid rgba(245, 245, 241, 0.1);
+  border-radius: 37px;
+  width: 180px;
+  color: white;
+  height: 33px;
+  font-size: 18px;
+  outline: none;
+  padding: 0 10px;
+  font-weight: 300;
+  transition: border 0.25s ease, width 0.125s ease;
+}
+
+.input-search:hover,
+.input-search:focus {
+  border: 2px solid red;
+  width: 230px;
+}
+
+@media (max-width: 1000px) {
+  .input-search {
+    height: 25px;
+    width: 110px;
+    font-size: 10px;
+  }
+
+  .input-search:hover,
+  .input-search:focus {
+    border: 2px solid red;
+    width: 110px;
+  }
+}

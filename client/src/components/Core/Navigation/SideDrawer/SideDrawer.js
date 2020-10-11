@@ -3,12 +3,12 @@ import React from "react";
 import "./SideDrawer.css";
 
 import NavigationItems from "../NavigationItems/NavigationItems";
-
 import * as navigationLists from "../../../utils/Data/navigationItems";
+import Input from '../../Input/Input';
 
-const sideDrawer = () => {
+const sideDrawer = (props) => {
   return (
-    <div className="side-drawer">
+    <div className="side-drawer" onClick={props.clicked}>
       <div className="logo">
         <a href="/">NETFLIX</a>
       </div>
@@ -16,7 +16,7 @@ const sideDrawer = () => {
         <NavigationItems listHeaders={navigationLists.FIRST_LIST} />
         <NavigationItems listHeaders={navigationLists.SECOND_LIST} />
       </div>
-      <input placeholder="Search for a title..." />
+      <Input inputType='input-search' placeHolder="Search for a title..." />
     </div>
   );
 };
