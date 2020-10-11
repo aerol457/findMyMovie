@@ -7,10 +7,10 @@ import * as navigationLists from "../../../utils/Data/navigationItems";
 import Input from '../../Input/Input';
 import ToggleBurger from '../../ToggleBurger/ToggleBurger';
 
-const toolBar = () => {
+const toolBar = (props) => {
   return (
     <div className="second-header">
-      <ToggleBurger/>
+      <ToggleBurger clicked={props.toggleClicked} />
       <div className="second-header-navigation">
         <div className="logo">
           <a href="/">NETFLIX</a>

@@ -2,9 +2,9 @@ import React from 'react';
 
 import './ToggleBurger.css'
 
-const toggleBurger = () => {
+const toggleBurger = (props) => {
   return (
-    <div className='toggle-burger'>
+    <div onClick={props.clicked} className='toggle-burger'>
       <div>-</div>
       <div>-</div>
       <div>-</div>

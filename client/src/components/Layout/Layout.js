@@ -11,14 +11,14 @@ class Home extends Component {
   }
 
   sideDrawerToggleHandler = () => {
-    this.setState( prevState => {return {sideDrawerPosition: !prevState }})
+    this.setState( prevState => {return {sideDrawerPosition: !prevState.sideDrawerPosition }})
   }
 
   render() {
     return (
       <div>
-        <ToolBar />
-        {this.state.sideDrawerPosition ? <SideDrawer clicked= {this.sideDrawerToggleHandler} /> : null}
+        <ToolBar toggleClicked={this.sideDrawerToggleHandler} />
+        {this.state.sideDrawerPosition ? <SideDrawer sideDrawerIsOpen={this.state.sideDrawerPosition} clicked={this.sideDrawerToggleHandler} /> : null}
         <MainMovie />
       </div>
     );
