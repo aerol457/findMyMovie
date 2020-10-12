@@ -16,12 +16,13 @@ const toolBar = (props) => {
           <a href="/">NETFLIX</a>
         </div>
         <NavigationItems listHeaders={navigationLists.FIRST_LIST} />
-        <Input inputType='input-search' placeHolder="Search for a title..." />
+        <Input inputType='input-red' placeHolder="Search for a title..." />
       </div>
 
       <div className="second-header-auth">
         <NavigationItems listHeaders={navigationLists.SECOND_LIST} />
       </div>
+    
     </div>
   );
 };

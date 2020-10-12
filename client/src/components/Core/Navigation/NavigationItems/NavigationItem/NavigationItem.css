@@ -1,5 +1,5 @@
 .navigation-item a {
-  padding: 1px 4px;
+  padding: 4px 6px;
   font-size: 15px;
 }
 
@@ -15,7 +15,7 @@
   text-decoration: none;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 840px) {
   .navigation-item a {
     padding: 1px 4px;
     font-size: 10px;

@@ -1,4 +1,4 @@
-.input-search {
+.input-red {
   background-color: transparent;
   border: 2px solid rgba(245, 245, 241, 0.1);
   border-radius: 37px;
@@ -12,21 +12,34 @@
   transition: border 0.25s ease, width 0.125s ease;
 }
 
-.input-search:hover,
-.input-search:focus {
+.input-red:hover,
+.input-red:focus {
   border: 2px solid red;
   width: 230px;
 }
 
+.input-white {
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 37px;
+  width: 180px;
+  color: red;
+  height: 33px;
+  font-size: 18px;
+  outline: none;
+  padding: 0 10px;
+  font-weight: 300;
+}
+
 @media (max-width: 1000px) {
-  .input-search {
+  .input-red {
     height: 25px;
     width: 110px;
     font-size: 10px;
   }
 
-  .input-search:hover,
-  .input-search:focus {
+  .input-red:hover,
+  .input-red:focus {
     border: 2px solid red;
     width: 110px;
   }

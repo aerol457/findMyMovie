@@ -1,0 +1,40 @@
+.form {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  margin: 130px auto;
+  flex-direction: column;
+  border: 1px solid white;
+  box-shadow: 0 12px 13px white;
+}
+
+.form-input {
+  padding-top: 0;
+  padding: var(--padding-side);
+}
+
+.form-input Input {
+  font-size: 14px;
+  width: 80%;
+  margin-top: 20px;
+}
+
+.form-input Input:focus,
+.form-input Input:hover {
+  border: 1px solid red;
+}
+
+.form Button {
+  font-size: 15px;
+  padding: 6px 20px;
+  margin: 20px;
+}
+
+@media (min-width: 600px) {
+  .form {
+    width: 60%;
+  }
+  .form-input Input {
+    width: 60%;
+  }
+}

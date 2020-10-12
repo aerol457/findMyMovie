@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import "./MoviesList.css";
+import "./TopPicks.css";
 
 import MovieList from "./MovieList/MovieList";
 

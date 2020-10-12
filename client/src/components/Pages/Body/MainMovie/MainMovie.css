@@ -2,7 +2,7 @@
   position: relative;
   z-index: 4;
   left: -5px;
-  top: 170px;
+  top: 70px;
   height: 333px;
   width: 620px;
   padding: 0 var(--padding-side);
@@ -25,4 +25,18 @@
 
 .main-movie > h4 {
   font-weight: inherit;
+}
+
+@media (max-width: 700px) {
+  .main-movie {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+
+  .main-movie > * {
+    font-size: 23px;
+    width: 55%;
+    margin-left: 0;
+  }
 }

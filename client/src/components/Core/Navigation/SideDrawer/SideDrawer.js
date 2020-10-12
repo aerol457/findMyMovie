@@ -23,7 +23,7 @@ const sideDrawer = (props) => {
       <NavigationItems listHeaders={navigationLists.FIRST_LIST} />
         <NavigationItems listHeaders={navigationLists.SECOND_LIST} />
         </div>
-        <Input inputType='input-search' placeHolder="Search for a title..." />
+        <Input inputType='input-red' placeHolder="Search for a title..." />
         </div>
         </React.Fragment>
   );

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 
+import './Layout.css';
+
 import ToolBar from "../Core/Navigation/ToolBar/ToolBar";
 import SideDrawer from "../Core/Navigation/SideDrawer/SideDrawer";
-import MainMovie from "../Pages/Body/MainMovie/MainMovie";
 
 class Home extends Component {
 
@@ -19,7 +20,7 @@ class Home extends Component {
       <div>
         <ToolBar toggleClicked={this.sideDrawerToggleHandler} />
         {this.state.sideDrawerPosition ? <SideDrawer sideDrawerIsOpen={this.state.sideDrawerPosition} clicked={this.sideDrawerToggleHandler} /> : null}
-        <MainMovie />
+        <main className='content'>{this.props.children}</main>
       </div>
     );
   }
