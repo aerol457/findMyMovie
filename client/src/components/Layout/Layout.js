@@ -19,7 +19,7 @@ class Home extends Component {
     return (
       <div>
         <ToolBar toggleClicked={this.sideDrawerToggleHandler} />
-        {this.state.sideDrawerPosition ? <SideDrawer sideDrawerIsOpen={this.state.sideDrawerPosition} clicked={this.sideDrawerToggleHandler} /> : null}
+        <SideDrawer sideDrawerIsOpen={this.state.sideDrawerPosition} clicked={this.sideDrawerToggleHandler} />
         <main className='content'>{this.props.children}</main>
       </div>
     );

@@ -8,24 +8,30 @@ import Input from '../../Input/Input';
 import Backdrop from '../../Backdrop/Backdrop';
 
 const sideDrawer = (props) => {
-  let attachmentCLasses = ["side-drawer", "side-drawer-close"];
+  let attachmentClasses = ["side-drawer", "side-drawer-close"];
   if(props.sideDrawerIsOpen){
-    attachmentCLasses = ["side-drawer", "side-drawer-open"];
+    attachmentClasses = ["side-drawer", "side-drawer-open"];
   }
+  
   return (
     <React.Fragment>
-    <Backdrop />
-    <div className={attachmentCLasses.join(' ')} onClick={props.clicked}>
-    <div className="logo">
-        <a href="/">NETFLIX</a>
+      <Backdrop show={props.sideDrawerIsOpen} clicked={props.clicked}/>
+
+      <div className={attachmentClasses.join(' ')}>
+
+        <div className="logo">
+            <a href="/">NETFLIX</a>
         </div>
-      <div className="side-drawer-navigation">
-      <NavigationItems listHeaders={navigationLists.FIRST_LIST} />
-        <NavigationItems listHeaders={navigationLists.SECOND_LIST} />
+
+        <div className="side-drawer-navigation">
+          <NavigationItems listHeaders={navigationLists.FIRST_LIST} />
+          <NavigationItems listHeaders={navigationLists.SECOND_LIST} />
         </div>
+
         <Input inputType='input-red' placeHolder="Search for a title..." />
-        </div>
-        </React.Fragment>
+
+      </div>
+    </React.Fragment>
   );
 };
 
