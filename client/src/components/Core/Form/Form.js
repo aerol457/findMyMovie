@@ -8,6 +8,9 @@ import Button from '../Button/Button';
 const form = (props) => {
 
   const inputList = props.inputQuantity.map((inputDetails,index) => {
+    if(!props.stateProps[inputDetails.key]){
+      props.stateProps[inputDetails.key] = ''
+    }
     return <Input key={index} 
                   inputType='input-white' 
                   changed={(event) => props.changed(event,inputDetails.key)} 

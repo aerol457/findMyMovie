@@ -34,7 +34,7 @@ class SignUp extends Component{
   signUpHandler = (event) => {
     event.preventDefault();
     fetch('http://localhost:8080/auth/sign-up',{
-      method: 'post',
+      method: 'POST',
       headers:{
         'Content-Type': 'application/json'
       },
