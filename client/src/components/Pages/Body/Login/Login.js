@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import './Login.css';
 
 import Form from '../../../Core/Form/Form';
+import Spinner from '../../../Core/Spinner/Spinner';
 
 const list = [
   { key:'email', value: '', title: 'Your Email..', type: 'email'},
@@ -12,7 +13,8 @@ const list = [
 class Login extends Component{
 
   state = {
-    formData: {}
+    formData: {},
+    loading: false
   }
   componentDidMount(){
     let stateProps = {};
@@ -30,8 +32,8 @@ class Login extends Component{
     this.setState({formData: updateState});
   }
 
-  loginHandler = (event) => {
-    event.preventDefault();
+  loginHandler = () => {
+    this.setState({loading: true});
     fetch('http://localhost:8080/auth/login',{
       method: 'post',
       headers:{
@@ -43,6 +45,7 @@ class Login extends Component{
       })
     })
     .then(res => {
+      this.setState({loading: false})
       //Is Logged In?
       console.log(res);
     })
@@ -52,13 +55,20 @@ class Login extends Component{
   }
 
   render(){
-    return (
-      <div className='form-login'>
+
+    let form = <Spinner/>;
+    if(!this.state.loading){
+      form = (
       <Form  
-      submitted={(event) => this.loginHandler(event)} 
+      submitted={this.loginHandler} 
       changed={this.inputOnChangeHandler} 
       inputQuantity={list}
       stateProps= {this.state.formData}/>
+      );
+    }
+    return (
+      <div className='form-login'>
+      {form}
       </div>
     );
   }

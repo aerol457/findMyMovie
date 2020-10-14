@@ -13,7 +13,7 @@ const form = (props) => {
     }
     return <Input key={index} 
                   inputType='input-white' 
-                  changed={(event) => props.changed(event,inputDetails.key)} 
+                  changed={(event) => props.changed(event,inputDetails.key,index)} 
                   value={props.stateProps[inputDetails.key]} 
                   type={inputDetails.type} 
                   placeHolder={inputDetails.title} />
@@ -24,7 +24,7 @@ const form = (props) => {
       <div className='form-input'>
         {inputList}
       </div>
-      <Button btnType='outline-red'>Submit</Button>
+      <Button disable={props.disable} btnType='outline-red'>Submit</Button>
     </form>
   );
 };

@@ -13,6 +13,12 @@
   background: red;
 }
 
+.outline-red:disabled {
+  border: 2px solid gray;
+  background: none;
+  cursor: not-allowed;
+}
+
 .outline-white {
   background: none;
   color: white;

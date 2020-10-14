@@ -27,7 +27,7 @@
   margin-top: 20px;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 720px) {
   .side-drawer {
     display: none;
   }

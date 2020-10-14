@@ -24,8 +24,8 @@ const sideDrawer = (props) => {
         </div>
 
         <div className="side-drawer-navigation">
-          <NavigationItems listHeaders={navigationLists.FIRST_LIST} />
-          <NavigationItems listHeaders={navigationLists.SECOND_LIST} />
+          <NavigationItems clicked={props.clicked} listHeaders={navigationLists.FIRST_LIST} />
+          <NavigationItems clicked={props.clicked} listHeaders={navigationLists.SECOND_LIST} />
         </div>
 
         <Input inputType='input-red' placeHolder="Search for a title..." />

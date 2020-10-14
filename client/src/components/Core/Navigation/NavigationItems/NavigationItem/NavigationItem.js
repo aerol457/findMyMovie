@@ -5,7 +5,7 @@ import "./NavigationItem.css";
 
 const navbarItem = (props) => {
   return (
-    <li className="navigation-item">
+    <li className="navigation-item" onClick={props.clicked}>
       <NavLink exact to={props.link} activeClassName="active">
         {props.children}
       </NavLink>
