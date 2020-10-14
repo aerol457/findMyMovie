@@ -15,6 +15,15 @@ app.use((req, res, next) => {
 
 app.use('/auth',authRoute);
 
+app.use((err, req, res, next) => {
+  console.log(err)
+  res.status(err.statusCode).json({
+    message: err.message,
+    data: err.data
+  });
+  next();
+})
+
 //If u want that sync work you need to create a routes into models 
 sequelize.sync({
     force: false
