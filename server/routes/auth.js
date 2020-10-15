@@ -20,6 +20,7 @@ body('email').isEmail().normalizeEmail().custom((value) => {
     }
   })
 }),
+body('email').isEmail().normalizeEmail(),
 body('password').isAlphanumeric().isLength({min: 6, max: 16})
 .withMessage('Password length between 6-16 characters, only numbers and letters.'),
 body('confirmPassword','Passwords not match.').custom((value, {req}) => {
@@ -29,6 +30,11 @@ body('confirmPassword','Passwords not match.').custom((value, {req}) => {
   return true;
 })
 , authController.postSignUp);
-router.post('/login', authController.postLogin);
+
+router.post('/login',
+body('email').isEmail().normalizeEmail(),
+body('password').isAlphanumeric().isLength({min: 6, max: 16})
+.withMessage('Password length between 6-16 characters, only numbers and letters.'),
+authController.postLogin);
 
 module.exports = router;
