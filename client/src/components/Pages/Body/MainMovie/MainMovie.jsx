@@ -17,7 +17,7 @@ class MainMovie extends Component {
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque
           id quam sapiente unde voluptatum alias vero debitis, magnam quis quod.
         </h4>
-        <Button btnType="outline-red">Watch Now</Button>
+        <Button disable btnType="outline-red">Watch Now</Button>
         <Button btnType="outline-white">+My list</Button>
       </div>
     );

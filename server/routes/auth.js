@@ -1,5 +1,7 @@
 const {Router} = require('express');
 const { body } = require('express-validator');
+const passport = require('passport');
+
 
 const authController = require('../controllers/auth');
 const User = require('../models/user');
@@ -36,5 +38,9 @@ body('email').isEmail().normalizeEmail(),
 body('password').isAlphanumeric().isLength({min: 6, max: 16})
 .withMessage('Password length between 6-16 characters, only numbers and letters.'),
 authController.postLogin);
+
+router.get('/protected', passport.authenticate('jwt', { failureRedirect:'/', session: false }), (req, res, next) => {
+  res.status(200).json({ success: true, msg: "You are authorized" })
+});
 
 module.exports = router;

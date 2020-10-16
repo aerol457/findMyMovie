@@ -8,9 +8,9 @@ const pathToKey = path.join(__dirname,'..','utils','keys','id_rsa_pub.pem');
 const PUB_KEY = fs.readFileSync(pathToKey, 'utf-8');
 
 const options = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken,
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: PUB_KEY,
-  algorithms: ['rs256'] 
+  algorithms: ['RS256'] 
 }
 
 const strategy = new Strategy(options, (payload, done) => {

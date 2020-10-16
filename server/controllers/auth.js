@@ -1,6 +1,3 @@
-const fs = require('fs')
-const path = require('path')
-const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 
 const utils = require('../utils/utils');
@@ -23,7 +20,7 @@ exports.postSignUp = (req, res, next) => {
       salt: hashedPass.salt   
     })
     .then(user => {
-      res.status(200).json({message: 'User created successfully!', userId: user.id});
+      res.status(200).json({idUser: user.id})
     })
     .catch(err => {
       err.message = err;
@@ -56,19 +53,8 @@ exports.postLogin = (req, res, next) => {
       if(!isVaild){
         res.status(401).json({message: 'Password invalid.'});
       }
-      const pathToKey = path.join(__dirname, '..', 'utils','keys','id_rsa_priv.pem');
-      const PRIV_KEY = fs.readFileSync(pathToKey, 'utf8');
-      const payload = {
-        userId: currentUser.id,
-        email: currentUser.email
-      };
-      const token = jwt.sign(payload, PRIV_KEY, {
-        expiresIn: '1h'
-      })
-      res.status(200).json({
-        token: token,
-        userId: currentUser.id
-      });
+      const jwt = utils.issueJWT(currentUser);
+      res.status(200).json({ idUser: currentUser.id , token: jwt.token, expiresIn: jwt.expires })
     })
   .catch(err => {
     console.log(err);

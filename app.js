@@ -1,15 +1,14 @@
-const path = require('path');
 const express = require("express");
 const cors = require('cors');
-// const passport = require('passport');
-// require('./server/config/passport')(passport);
+const passport = require('passport');
+require('./server/config/passport')(passport);
 
 const sequelize = require('./server/config/database');
 const authRoute = require('./server/routes/auth');
 
 const app = express();
 
-// app.use(passport.initialize());
+app.use(passport.initialize());
 app.use(express.json());
 //Cors library allow to get routes from another domain
 //both options have equal purpose

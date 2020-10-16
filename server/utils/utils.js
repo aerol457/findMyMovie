@@ -1,4 +1,7 @@
+const path = require('path');
+const fs = require('fs');
 const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
 
 exports.genPassword =  (passowrd) => {
   const salt =  crypto.randomBytes(32).toString('hex');
@@ -19,13 +22,15 @@ exports.issueJWT = (user) => {
   const id = user.id;
   const expiresIn = '1d';
 
+  const pathToPrivateKey = path.join(__dirname, 'keys', 'id_rsa_priv.pem');
+  const PRIV_KEY = fs.readFileSync(pathToPrivateKey, 'utf-8');
+
   const payload = {
     sub: id,
     iat: Date.now()
   };
 
-  const signToken = jsonwebtoken.sign(payload, PRIV_KEY, { expiresIn: expiresIn, algorithm: 'RS256' });
-
+  const signToken = jwt.sign(payload, PRIV_KEY, { expiresIn: expiresIn, algorithm: 'RS256' });
   return {
     token: "Bearer " + signToken,
     expires: expiresIn

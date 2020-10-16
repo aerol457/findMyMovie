@@ -8,7 +8,7 @@ import SideDrawer from "../Core/Navigation/SideDrawer/SideDrawer";
 class Home extends Component {
 
   state = {
-    sideDrawerPosition: false
+    sideDrawerPosition: false,
   }
 
   sideDrawerToggleHandler = () => {
@@ -19,7 +19,7 @@ class Home extends Component {
     return (
       <div>
         <ToolBar toggleClicked={this.sideDrawerToggleHandler} />
-        <SideDrawer sideDrawerIsOpen={this.state.sideDrawerPosition} clicked={this.sideDrawerToggleHandler} />
+        <SideDrawer ideDrawerIsOpen={this.state.sideDrawerPosition} clicked={this.sideDrawerToggleHandler} />
         <main className='content'>{this.props.children}</main>
       </div>
     );

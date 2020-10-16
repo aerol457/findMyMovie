@@ -25,7 +25,8 @@ class Login extends Component{
         isValid: false},
     },
     loading: false,
-    formIsValid: false
+    formIsValid: false,
+    error: null,
   }
 
   inputOnChangeHandler = (event, inputIdentifier) => {
@@ -55,7 +56,8 @@ class Login extends Component{
     });
   }
 
-  loginHandler = () => {
+  loginHandler = (event) => {
+    event.preventDefault();
     this.setState({loading: true});
     fetch('http://localhost:8080/auth/login',{
       method: 'POST',
@@ -68,14 +70,27 @@ class Login extends Component{
       })
     })
     .then(resData => {
-      console.log(resData)
-      if(resData.status === 200 || resData.status === 201){
-        this.props.history.push('/');
+      if (resData.status === 422) {
+        throw new Error("Validation failed.");
       }
+      
+      if(resData.status !== 200 && resData.status !== 201){
+        throw new Error('Failed Authentication');
+      }
+      return resData.json();
+    })
+    .then(data => {
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('idUser', data.idUser);
+      const remainingMilliseconds = 24 * 60 * 60 * 1000;// 1 Day
+      const expiryDate = new Date(new Date().getTime() + remainingMilliseconds);
+      localStorage.setItem('expiryDate', expiryDate.toISOString());
+      this.props.onLogin(remainingMilliseconds);     
       this.setState({loading: false});
+      this.props.history.push('/'); 
     })
     .catch(err => {
-      console.log(err);
+      this.setState({error: err, loading: false});
     })
   }
 
@@ -96,7 +111,7 @@ class Login extends Component{
 
     let form = <Spinner/>;
     if(!this.state.loading){
-    form = (<form onSubmit={this.loginHandler} className='form'>
+    form = (<form onSubmit={(event) => this.loginHandler(event)} className='form'>
               <div className='form-input'>
                 {inputList}
               </div>
