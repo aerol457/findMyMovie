@@ -5,16 +5,13 @@ import "./MovieList.css";
 const moviesList = (props) => {
   return props.movieList.map((movie) => {
     return (
-      <li className="movie-list">
+      <li className="movie-list" key={movie.id}>
         <div className="movie-list-content">
-          <div className="movie-list-content-title">The Boys</div>
-          <div className="movie-list-content-rate">8.4/10</div>
-          <div className="movie-list-content-description">
-            A group of vigilantes A group of vigilantesA group of vigilantesA
-            group of vigilantesA group of vigilantesA group of vigilantesA group
-            of vigilantes
+          <div className="movie-list-content-title">{movie.title}</div>
+          <div className="movie-list-content-rate">{movie.rate}</div>
+          <div className="movie-list-content-description">{movie.description}</div>
           </div>
-        </div>
+          <button onClick={() => props.clicked(movie.id)} className="movie-list-button-add">+</button>
       </li>
     );
   });

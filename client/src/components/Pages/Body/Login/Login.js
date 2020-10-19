@@ -87,6 +87,8 @@ class Login extends Component{
       localStorage.setItem('expiryDate', expiryDate.toISOString());
       this.props.onLogin(remainingMilliseconds);     
       this.setState({loading: false});
+      console.log(this.props.location)
+      // window.location.reload();
       this.props.history.push('/'); 
     })
     .catch(err => {
@@ -95,7 +97,6 @@ class Login extends Component{
   }
 
   render(){
-
     const newFormData = Object.keys(this.state.formData).map(key => {
       return { id: key, config: this.state.formData[key]};
     })

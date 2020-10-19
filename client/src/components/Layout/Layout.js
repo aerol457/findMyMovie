@@ -18,8 +18,8 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <ToolBar toggleClicked={this.sideDrawerToggleHandler} />
-        <SideDrawer ideDrawerIsOpen={this.state.sideDrawerPosition} clicked={this.sideDrawerToggleHandler} />
+        <ToolBar onLogout={this.props.onLogout} isAuth={this.props.isAuth} toggleClicked={this.sideDrawerToggleHandler} />
+        <SideDrawer onLogout={this.props.onLogout} isAuth={this.props.isAuth} sideDrawerIsOpen={this.state.sideDrawerPosition} clicked={this.sideDrawerToggleHandler} />
         <main className='content'>{this.props.children}</main>
       </div>
     );

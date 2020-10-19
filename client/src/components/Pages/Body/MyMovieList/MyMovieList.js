@@ -1,11 +1,17 @@
 import React, {Component} from 'react';
 
+import AddList from './AddList/AddList';
+
 class MyMoviesList extends Component{
+
+  
 
   render(){
     return (
       <div>
-        <h1>MyMoviesList</h1>
+        <AddList /> 
+        <AddList /> 
+        <AddList /> 
       </div>
     );
   }

@@ -7,7 +7,7 @@ const navbarItem = (props) => {
   return (
     <li className="navigation-item" onClick={props.clicked}>
       <NavLink exact to={props.link} activeClassName="active">
-        {props.children}
+        {props.title}
       </NavLink>
     </li>
   );

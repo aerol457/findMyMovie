@@ -3,7 +3,6 @@ import React from "react";
 import "./SideDrawer.css";
 
 import NavigationItems from "../NavigationItems/NavigationItems";
-import * as navigationLists from "../../../utils/Data/navigationItems";
 import Input from '../../Input/Input';
 import Backdrop from '../../Backdrop/Backdrop';
 
@@ -24,8 +23,8 @@ const sideDrawer = (props) => {
         </div>
 
         <div className="side-drawer-navigation">
-          <NavigationItems clicked={props.clicked} listHeaders={navigationLists.FIRST_LIST} />
-          <NavigationItems clicked={props.clicked} listHeaders={navigationLists.SECOND_LIST} />
+          <NavigationItems clicked={props.clicked} isAuth={props.isAuth} position='first'/>
+          <NavigationItems onLogout={props.onLogout} clicked={props.clicked} isAuth={props.isAuth} position='second'/>
         </div>
 
         <Input inputType='input-red' placeHolder="Search for a title..." />

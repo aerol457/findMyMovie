@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router,Route, Switch, Redirect} from 'react-router-dom';
+import {BrowserRouter,Route, Switch, Redirect} from 'react-router-dom';
 
 import Layout from './components/Layout/Layout'
 import asyncComponent from './components/utils/AsyncComponent/asyncComponent';
@@ -10,7 +10,7 @@ const asyncTopPicks = asyncComponent(() => import('./components/Pages/Body/TopPi
 const asyncRecentMovies = asyncComponent(() => import('./components/Pages/Body/RecentMovies/RecentMovies')); 
 const asyncSignUp = asyncComponent(() => import('./components/Pages/Body/SignUp/SignUp')); 
 const AsyncLogin = asyncComponent(() => import('./components/Pages/Body/Login/Login')); 
-
+let timer;
 class App extends Component {
   state = {
     token: null,
@@ -20,6 +20,7 @@ class App extends Component {
   }
 
   componentDidMount(){
+    console.log('MOUNT')
     const token = localStorage.getItem('token');
     const expiryDate = localStorage.getItem('expiryDate');
     if(!token || !expiryDate){
@@ -36,18 +37,19 @@ class App extends Component {
     this.setState({
       token: token,
       idUser: idUser,
-      isAuth: true,
-    });
+      isAuth: true});
+
     this.setTimeLogout(remainingMilliseconds);
   }
 
   setTimeLogout = (milliseconds) => {
-    setTimeout(() => {
+    timer = setTimeout(() => {
       this.authLogoutHandler();
     },milliseconds)
   }
   
   authLogoutHandler = () => {
+    clearTimeout(timer);
     localStorage.removeItem('token');
     localStorage.removeItem('idUser');
     localStorage.removeItem('expiryDate');
@@ -57,41 +59,39 @@ class App extends Component {
       isAuth: false
     })
   }
-  render(){
 
+  render(){
     let navigationItems =  (
-     <div>
-     <Route path='/login' render={(props) => (
-       <AsyncLogin {...props} onLogin= {(milliseconds) => this.setTimeLogout(milliseconds)} />
-       )}/>
-       <Route path='/sign-up' component={asyncSignUp}/>
-       <Route path='/top-picks' component={asyncTopPicks}/>
-       <Route path='/' component={asyncMainMovie}/>
+      <Switch>
+        <Route path='/login' render={(props) => {
+          return <AsyncLogin {...props} onLogin={(milliseconds) => this.setTimeLogout(milliseconds)} />
+        }}/>
+        <Route path='/sign-up' component={asyncSignUp}/>
+        <Route path='/top-picks' component={asyncTopPicks}/>
+        <Route path='/' component={asyncMainMovie}/>
         <Redirect to='/'/>
-     </div>
-    );
-      //Change the navidatiopn items components 
-    if(this.state.isAuth){
-      navigationItems = (
-        <div>
-          <Route path='/top-picks' component={asyncTopPicks}/>
-          <Route path='/recent' component={asyncRecentMovies}/>
-          <Route path='/my-list' component={asyncMyMovieList}/>
-          <Route path='/' component={asyncMainMovie}/>
-          <Redirect to='/'/>
-        </div>
+      </Switch>
+      );
+
+      if(this.state.isAuth){
+        navigationItems = (
+          <Switch>
+            <Route path='/top-picks' component={asyncTopPicks}/>
+            <Route path='/recent' component={asyncRecentMovies}/>
+            <Route path='/my-list' component={asyncMyMovieList}/>
+            <Route path='/' component={asyncMainMovie}/>
+            <Redirect to='/'/>
+        </Switch>
       );
     }
 
     return (
       <div>
-        <Router>
-            <Layout isAuth={this.state.isAuth}>
-                <Switch>
+        <BrowserRouter>
+            <Layout isAuth={this.state.isAuth} onLogout={this.authLogoutHandler}>
                 {navigationItems}
-                </Switch>
               </Layout>
-            </Router>
+        </BrowserRouter>
       </div>
       );
     }

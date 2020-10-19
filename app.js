@@ -5,6 +5,7 @@ require('./server/config/passport')(passport);
 
 const sequelize = require('./server/config/database');
 const authRoute = require('./server/routes/auth');
+const movieRoute = require('./server/routes/movie');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(cors());
 //   next();
 // });
 
+app.use('/',movieRoute);
 app.use('/auth',authRoute);
 
 app.use((err, req, res, next) => {

@@ -6,10 +6,6 @@
   margin: 45px 0;
 }
 
-.movies-list-category {
-  margin: 30px 0;
-}
-
 .movies-list-header {
   color: white;
   font-size: 30px;
@@ -19,6 +15,6 @@
   display: flex;
   align-items: center;
   list-style: none;
-  justify-content: flex-start;
+  justify-content: space-between;
   margin-top: 20px;
 }

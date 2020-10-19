@@ -23,8 +23,10 @@ exports.postSignUp = (req, res, next) => {
       res.status(200).json({idUser: user.id})
     })
     .catch(err => {
+      if(!err.statusCode){
+        err.statusCode = 500;
+      }
       err.message = err;
-      err.statusCode = 500;
       next(err);
     })
 }
@@ -57,6 +59,10 @@ exports.postLogin = (req, res, next) => {
       res.status(200).json({ idUser: currentUser.id , token: jwt.token, expiresIn: jwt.expires })
     })
   .catch(err => {
-    console.log(err);
+    if(!err.statusCode){
+      err.statusCode = 500;
+    }
+    err.message = err;
+    next(err);
   })
 }
