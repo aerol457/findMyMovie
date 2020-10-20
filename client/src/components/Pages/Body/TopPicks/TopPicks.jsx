@@ -40,7 +40,6 @@ class MoviesList extends Component {
     })
     .then(dataMovies => {
       for(let movie of dataMovies.data){
-        console.log(movie.category)
           this.setState({
             ...this.state,
             movies: {

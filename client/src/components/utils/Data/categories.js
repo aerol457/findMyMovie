@@ -1,0 +1,1 @@
+export const USER_CATEGORIES = ["action", "horror", "comedy"];

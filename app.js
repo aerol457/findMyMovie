@@ -6,6 +6,10 @@ require('./server/config/passport')(passport);
 const sequelize = require('./server/config/database');
 const authRoute = require('./server/routes/auth');
 const movieRoute = require('./server/routes/movie');
+const accountRoute = require('./server/routes/account');
+const Movie = require('./server/models/movie');
+const UserMovie = require('./server/models/userMovie');
+const User = require('./server/models/user');
 
 const app = express();
 
@@ -25,6 +29,7 @@ app.use(cors());
 
 app.use('/',movieRoute);
 app.use('/auth',authRoute);
+app.use('/account',accountRoute);
 
 app.use((err, req, res, next) => {
   console.log(err)
@@ -34,6 +39,8 @@ app.use((err, req, res, next) => {
   });
   next();
 })
+
+Movie.belongsToMany(User,{through: UserMovie});
 
 //If u want that sync work you need to create a routes into models 
 sequelize.sync({

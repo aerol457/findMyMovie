@@ -8,18 +8,6 @@ const userMovie = sequelize.define('usermovie', {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true
-  },
-  title: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  idUser: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
-  idMovie: {
-    type: Sequelize.INTEGER,
-    allowNull: false
   }
 });
 
