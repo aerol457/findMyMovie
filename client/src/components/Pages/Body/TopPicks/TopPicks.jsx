@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import "./TopPicks.css";
 
-import MovieList from "./MovieList/MovieList";
+import AddList from '../MyMovieList/AddList/AddList';
 import Spinner from '../../../Core/Spinner/Spinner'; 
 
 class MoviesList extends Component {
@@ -58,11 +58,12 @@ class MoviesList extends Component {
       console.log(err);
     })
   }
-
+  
   addMovieToUserPersonalList = (idMovie) => {
+    this.setState({loading: true});
     const idUser = localStorage.getItem('idUser');
     const token = localStorage.getItem('token');
-    fetch('url', {
+    fetch('http://localhost:8080/account/add-movie', {
       method: 'POST',
       headers:{
         "Content-Type": "application/json",
@@ -74,9 +75,21 @@ class MoviesList extends Component {
       })
     })
     .then(resData => {
+      if(!resData.status === 200 || !resData.status === 201){
+        throw new Error('There was an error from server.');
+      }
+      
+      if(resData.status === 404){
+        this.setState({loading: false});
+        console.log('Must added movies before try to fetch them');
+        return this.props.history.push('/login');
+      }
+      
       console.log(resData);
+      this.setState({loading: false});
     })
     .catch(err => {
+      this.setState({loading: false});
       console.log(err);
     })
   }
@@ -86,26 +99,9 @@ class MoviesList extends Component {
     if(!this.state.loading){
       allCategories = (
       <React.Fragment>
-          <div className="movies-list-category">
-          <div className="movies-list-header">Comedy</div>
-          <ul className="movies-list-list">
-            <MovieList clicked={(id) => this.addMovieToUserPersonalList(id)} movieList={this.state.movies.comedy} />
-          </ul>
-          </div>
-          
-          <div className="movies-list-category">
-            <div className="movies-list-header">Action</div>
-            <ul className="movies-list-list">
-              <MovieList clicked={(id) => this.addMovieToUserPersonalList(id)} movieList={this.state.movies.action} />
-            </ul>
-          </div>
-
-          <div className="movies-list-category">
-          <div className="movies-list-header">Horror</div>
-          <ul className="movies-list-list">
-            <MovieList clicked={(id) => this.addMovieToUserPersonalList(id)} movieList={this.state.movies.horror} />
-          </ul>
-         </div>
+        <AddList title='Comedy' sign='+' removeMovie={(id) => this.addMovieToUserPersonalList(id)} movieList={this.state.movies.comedy}/>
+        <AddList title='Action' sign='+' removeMovie={(id) => this.addMovieToUserPersonalList(id)} movieList={this.state.movies.action}/>
+        <AddList title='Horror' sign='+' removeMovie={(id) => this.addMovieToUserPersonalList(id)} movieList={this.state.movies.horror}/>
       </React.Fragment>
       );
     }

@@ -8,7 +8,7 @@ const addList = (props) => {
     <div className="movies-list">
         <div className="movies-list-header">{props.title}</div>
         <ul className="movies-list-list">
-          <MovieList movieList={props.movieList} />
+          <MovieList actionSign={props.sign} clicked={props.removeMovie} movieList={props.movieList} />
         </ul>
       </div>
   );

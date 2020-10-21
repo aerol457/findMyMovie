@@ -11,7 +11,7 @@ const moviesList = (props) => {
           <div className="movie-list-content-rate">{movie.rate}</div>
           <div className="movie-list-content-description">{movie.description}</div>
           </div>
-          <button onClick={() => props.clicked(movie.id)} className="movie-list-button-add">+</button>
+          <button onClick={() => props.clicked(movie.id)} className="movie-list-button-add">{props.actionSign}</button>
       </li>
     );
   });

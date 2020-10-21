@@ -86,10 +86,7 @@ class Login extends Component{
       const expiryDate = new Date(new Date().getTime() + remainingMilliseconds);
       localStorage.setItem('expiryDate', expiryDate.toISOString());
       this.props.onLogin(remainingMilliseconds);     
-      this.setState({loading: false});
-      console.log(this.props.location)
-      // window.location.reload();
-      this.props.history.push('/'); 
+      window.location.replace('/');
     })
     .catch(err => {
       this.setState({error: err, loading: false});

@@ -1,5 +1,5 @@
 .movies-list {
-  top: 70px;
+  /* top: 70px; */
   height: 275px;
   position: relative;
   padding: 0 var(--padding-side);

@@ -9,6 +9,8 @@ router.get('/:id', accountController.getAllMovies);
 //Get Movie By id
 // router.get('/:id', movieController.getMovieById);
 //Add Movie by Admin
-router.post('/add-movie',accountController.postMovie);
+router.post('/add-movie',accountController.postAddMovie);
+
+router.delete('/remove-movie',accountController.postRemoveMovie);
 
 module.exports = router;
