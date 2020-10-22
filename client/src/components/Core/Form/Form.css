@@ -1,0 +1,10 @@
+.form {
+  position: fixed;
+  width: 90%;
+  left: 5%;
+  top: 5vh;
+  background: white;
+  border-radius: 5px;
+  z-index: 200;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}

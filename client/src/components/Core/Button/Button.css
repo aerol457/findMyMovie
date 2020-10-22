@@ -10,7 +10,7 @@
 }
 .outline-red:hover,
 .outline-red:active {
-  background: red;
+  background: white;
 }
 
 .outline-red:disabled {
@@ -31,5 +31,5 @@
 }
 .outline-white:hover,
 .outline-white:active {
-  border: 2px solid white;
+  border: 2px solid red;
 }

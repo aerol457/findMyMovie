@@ -52,7 +52,7 @@
   padding: 20px;
   color: white;
   text-align: left;
-  /* opacity: 0; */
+  opacity: 0;
 }
 
 .movie-list-content:hover,

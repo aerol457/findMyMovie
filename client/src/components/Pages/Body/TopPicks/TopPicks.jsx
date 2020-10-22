@@ -4,6 +4,8 @@ import "./TopPicks.css";
 
 import AddList from '../MyMovieList/AddList/AddList';
 import Spinner from '../../../Core/Spinner/Spinner'; 
+import Backdrop from '../../../Core/Backdrop/Backdrop'; 
+import Modal from '../../../Core/Modal/Modal'; 
 
 class MoviesList extends Component {
   
@@ -13,7 +15,9 @@ class MoviesList extends Component {
         action: [],
         horror: []
       },
-    loading: false
+    loading: false,
+    movieDetails: {},
+    viewDetailsMode: false
     }
   
 
@@ -94,19 +98,46 @@ class MoviesList extends Component {
     })
   }
 
+  onviewDetailsMovie = (idMovie) => {
+    this.setState({viewDetailsMode: true});
+  }
+
+  onCancelViewDetailsMovieHandler = () => {
+    console.log('START')
+    this.setState({viewDetailsMode: false});
+  }
+
   render() {
     let allCategories = <Spinner/>;
     if(!this.state.loading){
       allCategories = (
       <React.Fragment>
-        <AddList title='Comedy' sign='+' removeMovie={(id) => this.addMovieToUserPersonalList(id)} movieList={this.state.movies.comedy}/>
-        <AddList title='Action' sign='+' removeMovie={(id) => this.addMovieToUserPersonalList(id)} movieList={this.state.movies.action}/>
-        <AddList title='Horror' sign='+' removeMovie={(id) => this.addMovieToUserPersonalList(id)} movieList={this.state.movies.horror}/>
-      </React.Fragment>
+        <AddList title='Comedy' 
+                 sign='+' 
+                 removeMovie={(id) => this.addMovieToUserPersonalList(id)} 
+                 movieList={this.state.movies.comedy}
+                 clickedToViewDetails={(id) => this.onviewDetailsMovie(id)}/>
+        <AddList title='Action' 
+                 sign='+' 
+                 removeMovie={(id) => this.addMovieToUserPersonalList(id)} 
+                 movieList={this.state.movies.action}
+                 clickedToViewDetails={(id) => this.onviewDetailsMovie(id)}/>
+        <AddList title='Horror' 
+                 sign='+' 
+                 removeMovie={(id) => this.addMovieToUserPersonalList(id)} 
+                 movieList={this.state.movies.horror}
+                 clickedToViewDetails={(id) => this.onviewDetailsMovie(id)}/>
+                 </React.Fragment>
       );
     }
+    
     return (
-      <div className="movies-list">{allCategories}</div>
+      <div className="movies-list">
+     {this.state.viewDetailsMode ? 
+      (<div><Modal cancelModal={this.onCancelViewDetailsMovieHandler}/> 
+      <Backdrop /></div>) : null}
+      {allCategories}
+      </div>
     );
   }
 }
