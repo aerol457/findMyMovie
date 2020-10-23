@@ -10,7 +10,7 @@
 }
 .outline-red:hover,
 .outline-red:active {
-  background: white;
+  background: red;
 }
 
 .outline-red:disabled {

@@ -88,8 +88,9 @@ class MoviesList extends Component {
         console.log('Must added movies before try to fetch them');
         return this.props.history.push('/login');
       }
-      
-      console.log(resData);
+      if(this.state.viewDetailsMode){
+        this.setState({viewDetailsMode: false});
+      }
       this.setState({loading: false});
     })
     .catch(err => {
@@ -99,11 +100,37 @@ class MoviesList extends Component {
   }
 
   onviewDetailsMovie = (idMovie) => {
-    this.setState({viewDetailsMode: true});
+    fetch('http://localhost:8080/ ' + idMovie, {
+      method: 'GET',
+      headers:{
+        "Content-Type": "application/json"
+      }
+    })
+    .then(resData => {
+      if(!resData.status === 200 || !resData.status === 201){
+        throw new Error('There was an error from server.');
+      }
+      
+      if(resData.status === 404){
+        this.setState({loading: false});
+        console.log('Must added movies before try to fetch them');
+        return;
+      }
+      
+      return resData.json();
+    })
+    .then(resData => {
+      this.setState({viewDetailsMode: true, 
+                     movieDetails: resData.data,
+                     loading: false});
+    })
+    .catch(err => {
+      this.setState({loading: false});
+      console.log(err);
+    })
   }
 
   onCancelViewDetailsMovieHandler = () => {
-    console.log('START')
     this.setState({viewDetailsMode: false});
   }
 
@@ -130,11 +157,10 @@ class MoviesList extends Component {
                  </React.Fragment>
       );
     }
-    
     return (
       <div className="movies-list">
      {this.state.viewDetailsMode ? 
-      (<div><Modal cancelModal={this.onCancelViewDetailsMovieHandler}/> 
+      (<div><Modal movieData={this.state.movieDetails} submitModal={(id) => this.addMovieToUserPersonalList(id)} cancelModal={this.onCancelViewDetailsMovieHandler}/> 
       <Backdrop /></div>) : null}
       {allCategories}
       </div>

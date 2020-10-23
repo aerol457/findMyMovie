@@ -24,6 +24,10 @@ const Movie = sequelize.define('movie',{
   rate: {
     type: Sequelize.INTEGER,
     allowNull: false
+  },
+  imageUrl: {
+    type: Sequelize.STRING,
+    allowNull: false
   }
 });
 

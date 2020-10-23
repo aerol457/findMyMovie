@@ -2,18 +2,21 @@
   height: 200px;
   width: calc(20% - 20px);
   margin-right: 20px;
-  background-image: url("http://image.tmdb.org/t/p/original/bI37vIHSH7o4IVkq37P8cfxQGMx.jpg");
   background-color: black;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  transition: background 0.8s ease;
+  position: relative;
+}
+
+.movie-list-image img {
+  height: 68px;
+  width: 100%;
+  position: absolute;
+  margin: 65px 0;
+  transition: transform 0.8s ease;
 }
 
 .movie-list:hover,
 .movie-list:active {
   cursor: pointer;
-  background-size: 125%;
   opacity: 0.8;
 }
 

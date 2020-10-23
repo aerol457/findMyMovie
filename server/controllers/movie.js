@@ -17,15 +17,35 @@ exports.getAllMovies = (req, res, next) => {
   })
 }
 
+exports.getMovieById = (req, res, next) => {
+  const idMovie = req.params.id;
+  Movie.findByPk(idMovie)
+  .then(movie => {
+    if(!movie){
+      return res.status(404).json({message: 'Movie not found.'});
+    }
+    res.status(200).json({data:movie});
+  })
+  .catch(err => {
+    if(!err.statusCode){
+      err.statusCode = 500;
+    }
+    err.message = err;
+    next(err);
+  })
+}
+
 exports.postMovie = (req, res, next) => {
   const title = req.body.title;
   const description = req.body.description;
   const category = req.body.category;
+  const imageUrl = req.body.imageUrl;
   
   Movie.create({
     title: title,
     description: description,
     category: category,
+    imageUrl: imageUrl,
     rate: 0
   })
   .then(movie => {

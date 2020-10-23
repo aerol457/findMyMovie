@@ -2,28 +2,24 @@ import React from 'react';
 
 import './Modal.css';
 
-import Button from '../Button/Button';
-
 const modal = (props) => {
   return (
     <div className='modal'>
      <div className='model-content'>
         <div className='content-top'>
-          <img src='https://media.istockphoto.com/photos/cosplayer-dressed-as-spiderman-from-marvel-picture-id619272790' alt='image movie'/>
+          <img src={props.movieData.imageUrl} alt='Movie Image'/>
           <div className='content-top-header'>
-            <h1>The Great Spiderman</h1>
-            <h4>Rate: 10/8</h4>
+            <h1>{props.movieData.title}</h1>
+            <h4>Rate: {props.movieData.rate}</h4>
           </div>
         </div>
         <div  className='content-bottom'>
-          <p>Description: text text text text text text text text text text 
-          text text text text text text text text text text text text text 
-            text text text text text text text text text text text text text 
-            text text text text text text text text text text text text text </p>
+          <h5>Description:</h5>
+          <p>{props.movieData.description}</p>
         </div>
       <div className='content-controls'>
-          <button  onClick={props.cancelModal}>Cancel</button>
-          <button type='submit' btnType='outline-white'>+Add</button>
+          <button className='content-controls-gray' onClick={props.cancelModal}>Cancel</button>
+          <button className='content-controls-red' onClick={() => props.submitModal(props.movieData.id)}>+Add</button>
       </div>
      </div>
     </div>
