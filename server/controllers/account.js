@@ -71,11 +71,3 @@ exports.postRemoveMovie = (req, res, next) => {
     next(err);
   })
 }
-
-exports.getAllRecents = (req, res, next) => {
-  
-}
-
-exports.postAddRecent = (req, res, next) => {
-
-}

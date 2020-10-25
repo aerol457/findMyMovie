@@ -1,8 +1,9 @@
 .movie-list {
-  height: 200px;
+  height: 250px;
   width: calc(20% - 20px);
   margin-right: 20px;
   background-color: black;
+  border: 1px solid white;
   position: relative;
 }
 
@@ -12,6 +13,8 @@
   position: absolute;
   margin: 65px 0;
   transition: transform 0.8s ease;
+  position: absolute;
+  z-index: 100;
 }
 
 .movie-list:hover,
@@ -25,17 +28,18 @@
 }
 
 .movie-list-button-add {
-  bottom: 0;
-  right: 0;
-  float: right;
-  background: none;
+  height: 30px;
+  width: 30px;
   color: white;
-  padding: 3px 7px;
-  border: 1px solid white;
+  background: none;
+  border: 2px solid white;
   border-radius: 50%;
-  font-size: 12px;
   font-weight: bold;
+  font-size: 12px;
+  /* float: right; */
   cursor: pointer;
+  position: relative;
+  z-index: 120;
 }
 
 .movie-list-button-add:hover,
@@ -51,11 +55,11 @@
     rgba(0, 0, 0, 0) 100%
   );
   position: relative;
-  height: 100%;
-  padding: 20px;
+  padding: 10px;
   color: white;
   text-align: left;
   opacity: 0;
+  z-index: 105;
 }
 
 .movie-list-content:hover,
@@ -94,4 +98,7 @@
   .movie-list-content-description {
     font-size: 13px;
   }
+}
+
+@media (max-width: 720px) {
 }

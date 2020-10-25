@@ -71,7 +71,7 @@ class MoviesList extends Component {
       method: 'POST',
       headers:{
         "Content-Type": "application/json",
-        "Authoriztion": token
+        "Authorization": token
       },
       body: JSON.stringify({
         idUser: idUser,

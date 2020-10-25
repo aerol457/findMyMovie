@@ -22,7 +22,9 @@ class App extends Component {
   componentDidMount(){
     const token = localStorage.getItem('token');
     const expiryDate = localStorage.getItem('expiryDate');
-    if(!token || !expiryDate){
+    const idUser = localStorage.getItem('idUser');
+    if(!token || !expiryDate || !idUser){
+      this.authLogoutHandler();
       return;
     }
 
@@ -32,7 +34,6 @@ class App extends Component {
     }
     const remainingMilliseconds =
     new Date(expiryDate).getTime() - new Date().getTime();
-    const idUser = localStorage.getItem('idUser');
     this.setState({
       token: token,
       idUser: idUser,
