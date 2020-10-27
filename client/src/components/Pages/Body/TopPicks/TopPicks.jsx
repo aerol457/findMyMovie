@@ -120,9 +120,42 @@ class MoviesList extends Component {
       return resData.json();
     })
     .then(resData => {
+      this.onAddRecentMovieHandler(idMovie);
       this.setState({viewDetailsMode: true, 
                      movieDetails: resData.data,
                      loading: false});
+                     
+    })
+    .catch(err => {
+      this.setState({loading: false});
+      console.log(err);
+    })
+  }
+
+  onAddRecentMovieHandler = (idMovie) => {
+    const idUser = localStorage.getItem('idUser');
+    const token = localStorage.getItem('token');
+    fetch('http://localhost:8080/recent/add-recent', {
+      method: 'POST',
+      headers:{
+        "Content-Type": "application/json",
+        "Authorization": token
+      },
+      body: JSON.stringify({
+        idMovie: idMovie,
+        idUser: idUser
+      })
+    })
+    .then(resData => {
+      if(!resData.status === 200 || !resData.status === 201){
+        throw new Error('There was an error from server.');
+      }
+      
+      if(resData.status === 404){
+        this.setState({loading: false});
+        console.log("Don't have a recens yet.");
+        return;
+      }
     })
     .catch(err => {
       this.setState({loading: false});
@@ -160,8 +193,9 @@ class MoviesList extends Component {
     return (
       <div className="movies-list">
      {this.state.viewDetailsMode ? 
-      (<div><Modal movieData={this.state.movieDetails} submitModal={(id) => this.addMovieToUserPersonalList(id)} cancelModal={this.onCancelViewDetailsMovieHandler}/> 
-      <Backdrop /></div>) : null}
+      (<div><Modal titleSubmit='+Add' movieData={this.state.movieDetails} submitModal={(id) => this.addMovieToUserPersonalList(id)} cancelModal={this.onCancelViewDetailsMovieHandler}/> 
+      <Backdrop clicked={this.onCancelViewDetailsMovieHandler} show={this.state.viewDetailsMode}/>
+      </div>) : null}
       {allCategories}
       </div>
     );

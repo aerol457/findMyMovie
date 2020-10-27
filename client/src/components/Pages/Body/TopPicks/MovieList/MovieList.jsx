@@ -7,7 +7,7 @@ const moviesList = (props) => {
     return (
       <li className="movie-list" key={movie.id}>
           <div className='movie-list-image'>
-            <img alt='Movie Image' src={movie.imageUrl}/>
+            <img alt='Movie' src={movie.imageUrl}/>
           </div>
           <div className="movie-list-content" onClick={() => props.onviewDetailsMovie(movie.id)}>
             <div className="movie-list-content-title">{movie.title}</div>

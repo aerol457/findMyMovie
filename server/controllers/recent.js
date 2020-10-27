@@ -7,11 +7,13 @@ exports.getAllRecents = async (req, res, next) => {
         model: Recent,
         where: {
           userId: req.params.id
-        }
-      }
+        },
+      },
+      limit: 3,
     })
     .then(recents => {
-      res.json({data: recents});
+      console.log(recents)
+      res.status(200).json({data: recents});
     })
     .catch(err => {
       if(!err.statusCode){
@@ -112,6 +114,7 @@ exports.postAddRecent = async (req, res, next) => {
 
 exports.removeRecent = async (req, res, next) => {
   const idRecent = req.params.id;
+  console.log(idRecent)
   const idUser = req.body.idUser;
   let allowRemove = false;
   await Recent.findOne({
@@ -123,7 +126,7 @@ exports.removeRecent = async (req, res, next) => {
     if(!recent){
       return res.status(404).json({message: 'Not found recent'});
     }
-    if(recent.userId !== idUser){
+    if(recent.userId != idUser){
       return res.status(401).json({message: 'You are not authorized.'});
     }
     allowRemove = true;

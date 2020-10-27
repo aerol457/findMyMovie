@@ -7,7 +7,7 @@ const modal = (props) => {
     <div className='modal'>
      <div className='model-content'>
         <div className='content-top'>
-          <img src={props.movieData.imageUrl} alt='Movie Image'/>
+          <img src={props.movieData.imageUrl} alt='Movie'/>
           <div className='content-top-header'>
             <h1>{props.movieData.title}</h1>
             <h4>Rate: {props.movieData.rate}</h4>
@@ -19,7 +19,7 @@ const modal = (props) => {
         </div>
       <div className='content-controls'>
           <button className='content-controls-gray' onClick={props.cancelModal}>Cancel</button>
-          <button className='content-controls-red' onClick={() => props.submitModal(props.movieData.id)}>+Add</button>
+          <button className='content-controls-red' onClick={() => props.submitModal(props.movieData.id)}>{props.titleSubmit}</button>
       </div>
      </div>
     </div>

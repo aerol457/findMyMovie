@@ -14,7 +14,7 @@
   margin: 65px 0;
   transition: transform 0.8s ease;
   position: absolute;
-  z-index: 100;
+  /* z-index: 9s0; */
 }
 
 .movie-list:hover,
@@ -36,7 +36,6 @@
   border-radius: 50%;
   font-weight: bold;
   font-size: 12px;
-  /* float: right; */
   cursor: pointer;
   position: relative;
   z-index: 120;

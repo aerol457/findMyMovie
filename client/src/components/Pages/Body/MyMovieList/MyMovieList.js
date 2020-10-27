@@ -98,7 +98,7 @@ class MyMoviesList extends Component{
     if(!this.state.loading){
       content = (<div>
         {quantityOfMovies !== 0 ? (<div>
-          {this.state.movies.comedy.length !== 0 ? <AddList title='Comedy' sign='-' removeMovie={(id) => this.removeMovieFromAccountList(id,'comedy')} movieList={this.state.movies.comedy}/> : null}
+          {this.state.movies.comedy.length !== 0 ? <AddList clickedToViewDetails={() => {}} title='Comedy' sign='-' removeMovie={(id) => this.removeMovieFromAccountList(id,'comedy')} movieList={this.state.movies.comedy}/> : null}
           {this.state.movies.action.length !== 0 ? <AddList title='Action' sign='-' removeMovie={(id) => this.removeMovieFromAccountList(id,'action')} movieList={this.state.movies.action}/> : null}
           {this.state.movies.horror.length !== 0 ? <AddList title='Horror' sign='-' removeMovie={(id) => this.removeMovieFromAccountList(id,'horror')} movieList={this.state.movies.horror}/> : null}
         </div>) : <h2>Your list movie is empty, Start adding movies.</h2>}
