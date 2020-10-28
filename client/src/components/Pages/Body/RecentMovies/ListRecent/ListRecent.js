@@ -5,7 +5,7 @@ import './ListRecent.css';
 const listRecent = (props) => {
   const recents = props.recentMovies.map((recent,index) => {
     return <li className='recent-list-item' key={index}>
-      <div  onClick={() => props.clickedToViewDetails(recent.id)}>
+      <div className='recent-list-header' onClick={() => props.clickedToViewDetails(recent.id)}>
       {recent.title} 
       <span className='category'> ({recent.category.charAt(0).toUpperCase() + recent.category.slice(1)})</span> 
       </div>
